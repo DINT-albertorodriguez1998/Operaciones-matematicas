@@ -34,38 +34,16 @@ namespace Operaciones_matemáticas
             SumaRadioButton.IsChecked = true;
         }
 
-        private void OperacionRealizada()
-        {
-            float operando1 = float.Parse(Operando1TextBox.Text);
-            float operando2 = float.Parse(Operando2TextBox.Text);
-
-            if ((bool)SumaRadioButton.IsChecked)
-                ResultadoTextBox.Text = (operando1 + operando2).ToString();
-            else if ((bool)RestaRadioButton.IsChecked)
-                ResultadoTextBox.Text = (operando1 - operando2).ToString();
-            else if ((bool)MultiplicacionRadioButton.IsChecked)
-                ResultadoTextBox.Text = (operando1 * operando2).ToString();
-            else
-            {
-                if (operando2 != 0)
-                    ResultadoTextBox.Text = (operando1 / operando2).ToString();
-                else
-                    ResultadoTextBox.Text = "Error";
-            }
-        }
+        
 
         private void Operando1TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Operando2TextBox.Text != "" && Operando1TextBox.Text != "")
-                OperacionRealizada();
-            
+            OperacionRealizada();
         }
 
         private void Operando2TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Operando2TextBox.Text != "" && Operando1TextBox.Text != "")
-                OperacionRealizada();
-            
+            OperacionRealizada();
         }
 
         private void SumaRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -88,6 +66,27 @@ namespace Operaciones_matemáticas
             OperacionRealizada();
         }
 
-        
+        private void OperacionRealizada()
+        {
+            if (Operando1TextBox.Text != "" && Operando2TextBox.Text != "")
+            {
+                float operando1 = float.Parse(Operando1TextBox.Text);
+                float operando2 = float.Parse(Operando2TextBox.Text);
+
+                if ((bool)SumaRadioButton.IsChecked)
+                    ResultadoTextBox.Text = (operando1 + operando2).ToString();
+                else if ((bool)RestaRadioButton.IsChecked)
+                    ResultadoTextBox.Text = (operando1 - operando2).ToString();
+                else if ((bool)MultiplicacionRadioButton.IsChecked)
+                    ResultadoTextBox.Text = (operando1 * operando2).ToString();
+                else
+                {
+                    if (operando2 != 0)
+                        ResultadoTextBox.Text = (operando1 / operando2).ToString();
+                    else
+                        ResultadoTextBox.Text = "Error";
+                }
+            }
+        }
     }
 }
